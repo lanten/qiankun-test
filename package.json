@@ -1,0 +1,35 @@
+{
+  "name": "qiankun-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "workspaces": {
+    "packages": [
+      "./app-master",
+      "./app-react",
+      "./app-react-2"
+    ]
+  },
+  "scripts": {
+    "dev": "lerna run --parallel dev",
+    "build": "lerna run --parallel build",
+    "lint": "lerna run --parallel lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lanten/qiankun-test.git"
+  },
+  "author": "lanten",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lanten/qiankun-test/issues"
+  },
+  "homepage": "https://github.com/lanten/qiankun-test#readme",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}
