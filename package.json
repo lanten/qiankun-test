@@ -10,8 +10,7 @@
   "workspaces": {
     "packages": [
       "./app-master",
-      "./app-react",
-      "./app-react-2"
+      "./app-react"
     ]
   },
   "scripts": {

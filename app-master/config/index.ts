@@ -15,6 +15,9 @@ const config: ReactTsConfigPartial = {
     template: path.resolve(rootPath, 'src/index.html'),
   },
   devServerOptions: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
     publicPath: '',
   },
 

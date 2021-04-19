@@ -15,7 +15,11 @@ const config: ReactTsConfigPartial = {
     template: path.resolve(rootPath, 'src/index.html'),
   },
   devServerOptions: {
-    publicPath: '',
+    publicPath: 'http://localhost:18081/',
+    // contentBase: path.join(rootPath, 'dev-dist'),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
 
   entry: {
@@ -27,6 +31,26 @@ const config: ReactTsConfigPartial = {
     $tools: path.resolve(rootPath, 'src/tools'),
   },
 
+  // moduleFederationOptions: {
+  //   name: 'app_react',
+  //   filename: 'exports.js',
+  //   exposes: {
+  //     routes: path.resolve(rootPath, 'src/tools/auto-routes'),
+  //     exports: path.resolve(rootPath, 'src/app-exports'),
+  //   },
+  //   // shared: {
+  //   //   react: {
+  //   //     import: 'react', // the "react" package will be used a provided and fallback module
+  //   //     shareKey: 'react', // under this name the shared module will be placed in the share scope
+  //   //     shareScope: 'default', // share scope with this name will be used
+  //   //     eager: true,
+  //   //   },
+  //   //   'react-dom': {
+  //   //     eager: true,
+  //   //   },
+  //   // },
+  // },
+
   COMMON_ENV: {
     PROJECT_NAME: projectName,
     PROJECT_TITLE: projectTitle,
@@ -34,6 +58,16 @@ const config: ReactTsConfigPartial = {
   } as EnvVariables,
 
   env,
+
+  configureWebpack() {
+    return {
+      output: {
+        library: `${projectName}-[name]`,
+        libraryTarget: 'umd',
+        chunkLoadingGlobal: `webpackJsonp_${projectName}`,
+      },
+    }
+  },
 }
 
 export default config
