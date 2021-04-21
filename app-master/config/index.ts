@@ -18,7 +18,8 @@ const config: ReactTsConfigPartial = {
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
-    publicPath: '',
+    publicPath: '/',
+    disableHostCheck: true,
   },
 
   entry: {

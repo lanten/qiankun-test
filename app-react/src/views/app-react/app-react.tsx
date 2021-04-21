@@ -1,16 +1,12 @@
 import React from 'react'
 import { Button, Card } from 'antd'
 
-interface DemoProps extends PageProps {
-  id?: number
-}
-
-declare interface DemoState {
+declare interface State {
   count: number
 }
 
-export default class Demo extends React.Component<DemoProps, DemoState> {
-  state: DemoState = {
+export default class AppReact extends React.Component<PageProps, State> {
+  state: State = {
     count: 1,
   }
 
@@ -21,7 +17,7 @@ export default class Demo extends React.Component<DemoProps, DemoState> {
   render() {
     const { count } = this.state
     return (
-      <Card title="app-react" className="full-screen-min">
+      <Card title="app-react">
         <p>state count : {count}</p>
         <div className="mt-16">
           <Button
@@ -51,4 +47,4 @@ export default class Demo extends React.Component<DemoProps, DemoState> {
       console.log(res)
     })
   }
-} // class Demo end
+} // class AppReact end

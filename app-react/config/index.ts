@@ -15,7 +15,9 @@ const config: ReactTsConfigPartial = {
     template: path.resolve(rootPath, 'src/index.html'),
   },
   devServerOptions: {
-    publicPath: 'http://localhost:18081/',
+    // publicPath: 'http://10.110.5.144:18081/',
+    host: '10.110.5.144',
+    disableHostCheck: true,
     // contentBase: path.join(rootPath, 'dev-dist'),
     headers: {
       'Access-Control-Allow-Origin': '*',

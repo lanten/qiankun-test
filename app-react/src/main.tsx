@@ -1,5 +1,6 @@
+import './public-path'
 import React from 'react'
-import reactDom from 'react-dom'
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { store } from '@/store'
 
@@ -9,7 +10,7 @@ import '@/styles/index.less'
 // renderApp()
 
 function renderApp(el?: HTMLElement) {
-  reactDom.render(
+  ReactDOM.render(
     <Provider store={store}>
       <App routes={$tools.routes} />
     </Provider>,
@@ -31,7 +32,6 @@ export async function mount(props: any) {
 }
 
 export async function unmount(props: any) {
-  console.log(props)
-  // @ts-ignore
-  app.destroy()
+  const { container } = props
+  ReactDOM.unmountComponentAtNode(container || document.querySelector('#app-content'))
 }

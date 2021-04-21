@@ -1,27 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Provider } from 'react-redux'
-// import { ConfigProvider } from 'antd'
-// import zhCN from 'antd/es/locale/zh_CN'
+
 import { store } from '@/store'
-// import { AppRouter } from '@/components'
+import { loadQiankun, setDefaultMountApp } from './qiankun'
 
-import { loadQiankun } from './qiankun'
+export default function () {
+  const contentRef = React.createRef<HTMLDivElement>()
+  const contentId = 'app-content'
+  // const [count, setCount] = useState(0)
 
-interface AppProps {}
+  useEffect(() => {
+    loadQiankun(contentRef.current || contentId)
+    setDefaultMountApp('app-react')
+  }, [])
 
-export default class App extends React.Component<AppProps> {
-  contentRef = React.createRef<HTMLDivElement>()
+  // useEffect(() => {
+  //   console.log('count update!')
+  // }, [count])
 
-  componentDidMount() {
-    loadQiankun(this.contentRef.current || '#app-content')
+  function push(subapp: string) {
+    history.pushState(null, subapp, subapp)
   }
 
-  render(): JSX.Element {
-    return (
-      <Provider store={store}>
-        <div>master</div>
-        <div ref={this.contentRef} id="app-content"></div>
-      </Provider>
-    )
-  }
+  return (
+    <Provider store={store}>
+      <div className="app-master-content">
+        <nav className="mb-16">
+          <button onClick={() => push('/app-react')}>app-react</button>
+          <span className="ml-16 mr-16 text-light">|</span>
+          <button onClick={() => push('/app-react/page2')}>app-react:page2</button>
+          <span className="ml-16 mr-16 text-light">|</span>
+          <button onClick={() => push('/app-vue')}>app-vue</button>
+          <span className="ml-16 mr-16 text-light">|</span>
+          <button onClick={() => push('/app-vue/about')}>app-vue:about</button>
+        </nav>
+        <div ref={contentRef} id={contentId}></div>
+      </div>
+    </Provider>
+  )
 }
